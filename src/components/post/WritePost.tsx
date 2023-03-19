@@ -1,11 +1,13 @@
-import Avatar from './Avatar';
-import Container from './Container';
-import Divider from './Divider';
+import Avatar from '../Avatar';
+import Container from '../Container';
+import Divider from '../Divider';
 import { PropsWithChildren } from 'react';
 import {
   HiOutlinePhoto as PhotoIcon,
   HiOutlineVideoCamera as VideoCameraIcon,
 } from 'react-icons/hi2';
+import { useSelector } from 'react-redux';
+import { TRootState } from '@/utils/redux-toolkit';
 
 const PostAction = ({ children }: PropsWithChildren) => {
   return (
@@ -16,10 +18,17 @@ const PostAction = ({ children }: PropsWithChildren) => {
 };
 
 const WritePost = () => {
+  const { user } = useSelector((state: TRootState) => state.user);
   return (
     <Container>
       <div className="flex gap-2 items-center">
-        <Avatar imgUrl="https://scontent.fmar7-1.fna.fbcdn.net/v/t39.30808-6/300189805_5689864587730671_204287636568588692_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=yXh13MZU4csAX8V-kvO&_nc_ht=scontent.fmar7-1.fna&oh=00_AfA5_OwWDsityl2khl-Cln0EK4C2XcfxeaAtaFFbsy5BTw&oe=64141CAE" />
+        <Avatar
+          imgUrl={
+            user?.picturePath
+              ? user?.picturePath
+              : 'https://storage.googleapis.com/media.clinicavisualyauditiva.com/images/2019/11/211fd983-default-user-image.png'
+          }
+        />
         <input
           type="text"
           className="bg-slate-100 dark:bg-neutral-500 dark:bg-opacity-30 h-10 rounded-md outline-none placeholder:text-sm px-2 text-sm text-slate-500 flex-1 dark:text-neutral-200 font-normal placeholder:dark:text-neutral-400"

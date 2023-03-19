@@ -1,6 +1,6 @@
 import IPost from '@/interfaces/post.interface';
-import Avatar from './Avatar';
-import Container from './Container';
+import Avatar from '../Avatar';
+import Container from '../Container';
 import {
   HiOutlineEllipsisHorizontal as EllipsisHoriIcon,
   HiOutlineChatBubbleBottomCenter as CommentIcon,
@@ -9,8 +9,10 @@ import {
 import { TbShare3 as ShareIcon } from 'react-icons/tb';
 import { PropsWithChildren } from 'react';
 import { GoThumbsup as ThinThumbIcon } from 'react-icons/go';
-import Emoji from './Emoji';
-import Divider from './Divider';
+import Emoji from '../Emoji';
+import Divider from '../Divider';
+import { useSelector } from 'react-redux';
+import { TRootState } from '@/utils/redux-toolkit';
 
 interface Props extends IPost {}
 
@@ -22,14 +24,20 @@ const ReactionButtonContainer = ({ children }: PropsWithChildren) => {
   );
 };
 
-const Post = ({ user, createdAt, description, picturePath }: Props) => {
+const Post = ({
+  user: userPost,
+  createdAt,
+  description,
+  picturePath,
+}: Props) => {
+  const { user } = useSelector((state: TRootState) => state.user);
   return (
     <Container className="w-[600px]">
       <header className="flex gap-2 justify-between items-center">
-        <Avatar imgUrl={user.picturePath} />
+        <Avatar imgUrl={userPost.picturePath} />
         <div className="flex-1 flex flex-col justify-center">
           <h3 className="text-slate-600 dark:text-neutral-200 text-md tracking-wider  font-bold leading-none ">
-            {user.firstName} {user.lastName}
+            {userPost.firstName} {userPost.lastName}
           </h3>
           <span className="text-slate-500 dark:text-neutral-200 dark:text-opacity-60 text-[13px] font-medium">
             {createdAt}
@@ -99,7 +107,13 @@ const Post = ({ user, createdAt, description, picturePath }: Props) => {
         </div>
         <Divider />
         <div className="flex gap-2">
-          <Avatar imgUrl="https://scontent.fmar7-1.fna.fbcdn.net/v/t39.30808-6/300189805_5689864587730671_204287636568588692_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=yXh13MZU4csAX8V-kvO&_nc_ht=scontent.fmar7-1.fna&oh=00_AfA5_OwWDsityl2khl-Cln0EK4C2XcfxeaAtaFFbsy5BTw&oe=64141CAE" />
+          <Avatar
+            imgUrl={
+              user?.picturePath
+                ? user?.picturePath
+                : 'https://storage.googleapis.com/media.clinicavisualyauditiva.com/images/2019/11/211fd983-default-user-image.png'
+            }
+          />
           <input
             type="text"
             className="bg-slate-100 dark:bg-neutral-500 dark:bg-opacity-30 h-10 rounded-md outline-none placeholder:text-sm px-2 text-sm text-slate-500 flex-1 dark:text-neutral-200 font-normal placeholder:dark:text-neutral-400"

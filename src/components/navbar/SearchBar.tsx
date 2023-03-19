@@ -1,8 +1,11 @@
+import { HTMLAttributes } from 'react';
 import { HiOutlineMagnifyingGlass as Search } from 'react-icons/hi2';
 
-const SearchBar = () => {
+interface Props extends HTMLAttributes<HTMLDivElement> {}
+
+const SearchBar = ({ className }: Props) => {
   return (
-    <div className="relative hidden sm:block">
+    <div className={`relative ${className}`}>
       <input
         type="text"
         placeholder="Search..."

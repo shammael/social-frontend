@@ -1,4 +1,6 @@
 import IStory from '@/interfaces/story.interface';
+import { TRootState } from '@/utils/redux-toolkit';
+import { useSelector } from 'react-redux';
 import Container from '../Container';
 import AddStory from './AddStory';
 import Story from './Story';
@@ -41,7 +43,7 @@ const storyData: IStory[] = [
       id: '1',
       online: true,
     },
-    id: 's-2',
+    id: 's-5',
   },
   {
     imgUrl:
@@ -54,7 +56,7 @@ const storyData: IStory[] = [
       id: '1',
       online: true,
     },
-    id: 's-2',
+    id: 's-4',
   },
   {
     imgUrl:
@@ -67,14 +69,21 @@ const storyData: IStory[] = [
       id: '1',
       online: true,
     },
-    id: 's-2',
+    id: 's-3',
   },
 ];
 
 const StoryContainer = () => {
+  const { user } = useSelector((state: TRootState) => state.user);
   return (
     <Container className="flex flex-row gap-2 overflow-x-scroll">
-      <AddStory imgUrl="https://scontent.fmar7-1.fna.fbcdn.net/v/t39.30808-6/300189805_5689864587730671_204287636568588692_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=yXh13MZU4csAX8V-kvO&_nc_ht=scontent.fmar7-1.fna&oh=00_AfA5_OwWDsityl2khl-Cln0EK4C2XcfxeaAtaFFbsy5BTw&oe=64141CAE" />
+      <AddStory
+        imgUrl={
+          user?.picturePath
+            ? user?.picturePath
+            : 'https://storage.googleapis.com/media.clinicavisualyauditiva.com/images/2019/11/211fd983-default-user-image.png'
+        }
+      />
       {storyData.map((story) => (
         <Story
           key={story.id}

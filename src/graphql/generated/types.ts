@@ -237,7 +237,7 @@ export type LoginMutationVariables = Exact<{
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'BadRequestError', message: string, name: ErrorName, code: number, messages?: Array<{ __typename?: 'ErrorMessagesType', field: string, message: string }> | null } | { __typename?: 'InternalServerError', message: string, name: ErrorName, code: number, messages?: Array<{ __typename?: 'ErrorMessagesType', field: string, message: string }> | null } | { __typename?: 'LoginData', token: any, user: { __typename?: 'User', email: any, online: boolean, _id: string, firstName: string, lastName: string } } };
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'BadRequestError', message: string, name: ErrorName, code: number, messages?: Array<{ __typename?: 'ErrorMessagesType', field: string, message: string }> | null } | { __typename?: 'InternalServerError', message: string, name: ErrorName, code: number, messages?: Array<{ __typename?: 'ErrorMessagesType', field: string, message: string }> | null } | { __typename?: 'LoginData', token: any, user: { __typename?: 'User', email: any, online: boolean, _id: string, firstName: string, lastName: string, picturePath?: string | null } } };
 
 
 export const LoginDocument = gql`
@@ -250,6 +250,7 @@ export const LoginDocument = gql`
         _id
         firstName
         lastName
+        picturePath
       }
       token
     }

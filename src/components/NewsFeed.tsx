@@ -1,6 +1,6 @@
 import IPost from '@/interfaces/post.interface';
 import { fromDistanceToNow } from '@/utils/date';
-import Post from './Post';
+import Post from './post/Post';
 import Spacer from './Spacer';
 
 const newsFeed: IPost[] = [
