@@ -7,7 +7,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {}
 const MenuButton = ({ className }: Props) => {
   return (
     <IconButtonWrapper className="flex justify-center items-center">
-      <MenuIcon className="text-white" size={20} />
+      <MenuIcon className="text-slate-500" size={25} />
     </IconButtonWrapper>
   );
 };

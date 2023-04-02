@@ -18,53 +18,32 @@ export type Scalars = {
   Token: any;
 };
 
-export type BadRequestError = Error & {
-  __typename?: 'BadRequestError';
-  code: Scalars['Int'];
-  message: Scalars['String'];
-  messages?: Maybe<Array<ErrorMessagesType>>;
-  name: ErrorName;
+export type AddStoryInput = {
+  mediaType: StoryMediaType;
 };
 
-export type Error = {
-  code: Scalars['Int'];
-  message: Scalars['String'];
-  messages?: Maybe<Array<ErrorMessagesType>>;
-  name: ErrorName;
+export type Friend = {
+  __typename?: 'Friend';
+  _id: Scalars['ID'];
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  online: Scalars['Boolean'];
+  picturePath?: Maybe<Scalars['String']>;
 };
 
-export type ErrorMessagesType = {
-  __typename?: 'ErrorMessagesType';
-  field: Scalars['String'];
-  message: Scalars['String'];
-};
-
-export enum ErrorName {
-  Badrequest = 'BADREQUEST',
-  Forbidden = 'FORBIDDEN',
-  Internalservererror = 'INTERNALSERVERERROR',
-  Unauthorized = 'UNAUTHORIZED'
+export enum Gender {
+  Female = 'Female',
+  Male = 'Male'
 }
 
-export type ForbiddenError = Error & {
-  __typename?: 'ForbiddenError';
-  code: Scalars['Int'];
-  message: Scalars['String'];
-  messages?: Maybe<Array<ErrorMessagesType>>;
-  name: ErrorName;
+export type GetFriendsStoriesInput = {
+  limit?: InputMaybe<Scalars['Int']>;
+  page: Scalars['Int'];
 };
 
 export type GetPostsInput = {
   limit?: InputMaybe<Scalars['Int']>;
   page: Scalars['Int'];
-};
-
-export type InternalServerError = Error & {
-  __typename?: 'InternalServerError';
-  code: Scalars['Int'];
-  message: Scalars['String'];
-  messages?: Maybe<Array<ErrorMessagesType>>;
-  name: ErrorName;
 };
 
 export enum LikeReaction {
@@ -79,32 +58,42 @@ export type Likes = {
   userID: Scalars['ID'];
 };
 
-export type LoginData = {
-  __typename?: 'LoginData';
+export type LoginResponse = {
+  __typename?: 'LoginResponse';
   token: Scalars['Token'];
   user: User;
 };
 
-export type LoginResponse = BadRequestError | InternalServerError | LoginData;
-
-export type Logout = {
-  __typename?: 'Logout';
+export type LogoutResponse = {
+  __typename?: 'LogoutResponse';
   message?: Maybe<Scalars['String']>;
 };
 
-export type LogoutResponse = ForbiddenError | InternalServerError | Logout;
-
 export type Mutation = {
   __typename?: 'Mutation';
-  deletePost: PostRespose;
+  addStory: Scalars['String'];
+  deletePost: Post;
+  deleteStory: Story;
   login: LoginResponse;
   logout: LogoutResponse;
-  toggleLikePost: ToogleLikeResponse;
+  register: Scalars['String'];
+  storySeen: Scalars['String'];
+  toggleLikePost: Scalars['String'];
+};
+
+
+export type MutationAddStoryArgs = {
+  input: AddStoryInput;
 };
 
 
 export type MutationDeletePostArgs = {
   id: Scalars['ID'];
+};
+
+
+export type MutationDeleteStoryArgs = {
+  storyID: Scalars['ID'];
 };
 
 
@@ -115,6 +104,16 @@ export type MutationLoginArgs = {
 
 export type MutationLogoutArgs = {
   id: Scalars['ID'];
+};
+
+
+export type MutationRegisterArgs = {
+  input: RegisterInput;
+};
+
+
+export type MutationStorySeenArgs = {
+  storyID: Scalars['ID'];
 };
 
 
@@ -169,20 +168,22 @@ export type PostList = Paginate & {
   totalPages: Scalars['Int'];
 };
 
-export type PostRespose = BadRequestError | InternalServerError | Post;
-
 export enum PostStatus {
   Active = 'active',
   Disabled = 'disabled',
   Pending = 'pending'
 }
 
-export type PostsRespose = InternalServerError | PostList;
-
 export type Query = {
   __typename?: 'Query';
-  post: PostRespose;
-  posts: PostsRespose;
+  getFriendsStories: StoriesFriend;
+  post: Post;
+  posts: PostList;
+};
+
+
+export type QueryGetFriendsStoriesArgs = {
+  input: GetFriendsStoriesInput;
 };
 
 
@@ -195,40 +196,95 @@ export type QueryPostsArgs = {
   input: GetPostsInput;
 };
 
-export type ToggleLike = {
-  __typename?: 'ToggleLike';
-  message?: Maybe<Scalars['String']>;
+export type RegisterInput = {
+  birthDate: Scalars['Date'];
+  email: Scalars['String'];
+  firstName: Scalars['String'];
+  gender: Gender;
+  lastName: Scalars['String'];
+  password: Scalars['String'];
 };
+
+export type StoriesFriend = Paginate & {
+  __typename?: 'StoriesFriend';
+  docs: Array<Maybe<UserStories>>;
+  hasNextPage: Scalars['Boolean'];
+  hasPrevPage: Scalars['Boolean'];
+  limit: Scalars['Int'];
+  nextPage: Scalars['Int'];
+  offset: Scalars['Int'];
+  page?: Maybe<Scalars['Int']>;
+  pagingCounter: Scalars['Int'];
+  prevPage: Scalars['Int'];
+  totalDocs: Scalars['Int'];
+  totalPages: Scalars['Int'];
+};
+
+export type Story = {
+  __typename?: 'Story';
+  _id: Scalars['ID'];
+  content?: Maybe<StoryContent>;
+  interactions?: Maybe<Array<Maybe<StoryInteractions>>>;
+  status: StoryStatus;
+};
+
+export type StoryContent = {
+  __typename?: 'StoryContent';
+  media: StoryMediaType;
+  mediaUrl?: Maybe<Scalars['String']>;
+};
+
+export type StoryInteractions = {
+  __typename?: 'StoryInteractions';
+  reactions?: Maybe<Array<Maybe<StoryInteractionsReactions>>>;
+  userID: Scalars['ID'];
+};
+
+export enum StoryInteractionsReactions {
+  Haha = 'haha',
+  Like = 'like',
+  Love = 'love'
+}
+
+export enum StoryMediaType {
+  Picture = 'picture',
+  Text = 'text',
+  Video = 'video'
+}
+
+export enum StoryStatus {
+  Active = 'active',
+  Archived = 'archived',
+  Disabled = 'disabled'
+}
 
 export type ToggleLikePostInput = {
   id: Scalars['ID'];
   reaction?: InputMaybe<LikeReaction>;
 };
 
-export type ToogleLikeResponse = BadRequestError | InternalServerError | ToggleLike;
-
-export type UnauthorizedError = Error & {
-  __typename?: 'UnauthorizedError';
-  code: Scalars['Int'];
-  message: Scalars['String'];
-  messages?: Maybe<Array<ErrorMessagesType>>;
-  name: ErrorName;
-};
-
 export type User = {
   __typename?: 'User';
   _id: Scalars['ID'];
+  birthDate: Scalars['Date'];
   email: Scalars['Email'];
   firstName: Scalars['String'];
+  friendsList: Array<Maybe<Friend>>;
+  gender: Gender;
   lastName: Scalars['String'];
   location?: Maybe<Scalars['String']>;
-  occupation?: Maybe<Scalars['String']>;
   online: Scalars['Boolean'];
   picturePath?: Maybe<Scalars['String']>;
 };
 
+export type UserStories = {
+  __typename?: 'UserStories';
+  stories: Array<Maybe<Story>>;
+  userID: Scalars['ID'];
+};
+
 export type LoginInput = {
-  email: Scalars['String'];
+  email: Scalars['Email'];
   password: Scalars['String'];
 };
 
@@ -237,41 +293,35 @@ export type LoginMutationVariables = Exact<{
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'BadRequestError', message: string, name: ErrorName, code: number, messages?: Array<{ __typename?: 'ErrorMessagesType', field: string, message: string }> | null } | { __typename?: 'InternalServerError', message: string, name: ErrorName, code: number, messages?: Array<{ __typename?: 'ErrorMessagesType', field: string, message: string }> | null } | { __typename?: 'LoginData', token: any, user: { __typename?: 'User', email: any, online: boolean, _id: string, firstName: string, lastName: string, picturePath?: string | null } } };
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'LoginResponse', token: any, user: { __typename?: 'User', email: any, online: boolean, _id: string, firstName: string, lastName: string, picturePath?: string | null, friendsList: Array<{ __typename?: 'Friend', _id: string, firstName: string, lastName: string, online: boolean, picturePath?: string | null } | null> } } };
+
+export type RegisterMutationVariables = Exact<{
+  input: RegisterInput;
+}>;
+
+
+export type RegisterMutation = { __typename?: 'Mutation', register: string };
 
 
 export const LoginDocument = gql`
     mutation Login($input: loginInput!) {
   login(input: $input) {
-    ... on LoginData {
-      user {
-        email
-        online
+    user {
+      email
+      online
+      _id
+      firstName
+      lastName
+      picturePath
+      friendsList {
         _id
         firstName
         lastName
+        online
         picturePath
       }
-      token
     }
-    ... on BadRequestError {
-      message
-      name
-      code
-      messages {
-        field
-        message
-      }
-    }
-    ... on InternalServerError {
-      message
-      name
-      code
-      messages {
-        field
-        message
-      }
-    }
+    token
   }
 }
     `;
@@ -301,3 +351,34 @@ export function useLoginMutation(baseOptions?: Apollo.MutationHookOptions<LoginM
 export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
 export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
 export type LoginMutationOptions = Apollo.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
+export const RegisterDocument = gql`
+    mutation Register($input: RegisterInput!) {
+  register(input: $input)
+}
+    `;
+export type RegisterMutationFn = Apollo.MutationFunction<RegisterMutation, RegisterMutationVariables>;
+
+/**
+ * __useRegisterMutation__
+ *
+ * To run a mutation, you first call `useRegisterMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRegisterMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [registerMutation, { data, loading, error }] = useRegisterMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useRegisterMutation(baseOptions?: Apollo.MutationHookOptions<RegisterMutation, RegisterMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<RegisterMutation, RegisterMutationVariables>(RegisterDocument, options);
+      }
+export type RegisterMutationHookResult = ReturnType<typeof useRegisterMutation>;
+export type RegisterMutationResult = Apollo.MutationResult<RegisterMutation>;
+export type RegisterMutationOptions = Apollo.BaseMutationOptions<RegisterMutation, RegisterMutationVariables>;

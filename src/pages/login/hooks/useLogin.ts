@@ -3,25 +3,17 @@ import LoginContext from '@/pages/login/context/login.context';
 import loginSchema from '@/pages/login/schema/login.schema';
 import { setToken } from '@/utils/redux-toolkit/features/token.slice';
 import { setUser } from '@/utils/redux-toolkit/features/user.slice';
+import { ApolloError } from '@apollo/client';
 import { replace, useFormik } from 'formik';
+import { GraphQLError } from 'graphql';
 import { useContext, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 const useLogin = () => {
-  // const { setError } = useContext(LoginContext);
-  // const dispatch = useDispatch();
+  const { setError } = useContext(LoginContext);
+  const dispatch = useDispatch();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const [login, { loading, data, error }] = useLoginMutation({
-    variables: {
-      input: {
-        email: email,
-        password: password,
-      },
-    },
-  });
+  const [login, { loading, data, error }] = useLoginMutation();
 
   const {
     handleChange,
@@ -39,23 +31,28 @@ const useLogin = () => {
     },
     validationSchema: loginSchema,
     onSubmit: async (values, actions) => {
-      login();
+      login({
+        variables: {
+          input: {
+            email: values.email,
+            password: values.password,
+          },
+        },
+      })
+        .then((data) => console.log(data))
+        .catch((err: unknown) => {
+          console.log({ err });
+          if (err instanceof ApolloError) {
+            return err.graphQLErrors.map((er) => {
+              console.log({ er });
+              const field = er.extensions.field as string;
+              console.log({ field });
+              setErrors({ [field.toLowerCase()]: err.message });
+            });
+          }
+        });
     },
   });
-
-  useEffect(() => {
-    setEmail(values.email);
-  }, [values.email]);
-
-  useEffect(() => {
-    setPassword(values.password);
-  }, [values.password]);
-
-  // useEffect(() => {
-  //   setLoginErrors({
-  //     email: errors.email
-  //   });
-  // }, [loginErrors]);
 
   return {
     handleSubmit,
@@ -63,11 +60,11 @@ const useLogin = () => {
     loading,
     touched,
     isSubmitting,
-    loginErrors: errors,
+    formErrors: errors,
     handleChange,
     values,
     data,
-    setErrors,
+    loginError: error,
   };
 };
 

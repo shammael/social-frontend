@@ -1,7 +1,7 @@
 import IStory from '@/interfaces/story.interface';
 import { TRootState } from '@/utils/redux-toolkit';
 import { useSelector } from 'react-redux';
-import Container from '../Container';
+import ContentWrapper from '../StoryAndReels/ContentWrapper';
 import AddStory from './AddStory';
 import Story from './Story';
 
@@ -73,10 +73,11 @@ const storyData: IStory[] = [
   },
 ];
 
-const StoryContainer = () => {
+const StoryContent = () => {
   const { user } = useSelector((state: TRootState) => state.user);
   return (
-    <Container className="flex flex-row gap-2 overflow-x-scroll">
+    <ContentWrapper>
+      <div className="ml-2" />
       <AddStory
         imgUrl={
           user?.picturePath
@@ -84,16 +85,19 @@ const StoryContainer = () => {
             : 'https://storage.googleapis.com/media.clinicavisualyauditiva.com/images/2019/11/211fd983-default-user-image.png'
         }
       />
-      {storyData.map((story) => (
-        <Story
-          key={story.id}
-          imgUrl={story.imgUrl}
-          user={story.user}
-          id={story.id}
-        />
-      ))}
-    </Container>
+      <div className="flex w-full gap-2">
+        {storyData.map((story) => (
+          <Story
+            key={story.id}
+            imgUrl={story.imgUrl}
+            user={story.user}
+            id={story.id}
+          />
+        ))}
+      </div>
+      <div className="mr-2" />
+    </ContentWrapper>
   );
 };
 
-export default StoryContainer;
+export default StoryContent;

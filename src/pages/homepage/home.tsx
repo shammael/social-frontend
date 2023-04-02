@@ -6,11 +6,12 @@ import GroupInfo from '@/components/group/group-info';
 import GroupList from '@/components/group/group_list';
 import InfoHome from '@/components/InfoHome';
 import NewsFeed from '@/components/NewsFeed';
-import StoryContainer from '@/components/story/StoryContainer';
 import WritePost from '@/components/post/WritePost';
 import { TRootState } from '@/utils/redux-toolkit';
 import { setMode } from '@/utils/redux-toolkit/features/mode.slice';
 import { useDispatch, useSelector } from 'react-redux';
+import StoryProvider from '@/components/story/context/story.provider';
+import StoryAndReels from '@/components/StoryAndReels';
 
 const HomePage = () => {
   const theme = useSelector((state: TRootState) => state.mode);
@@ -23,11 +24,13 @@ const HomePage = () => {
         <GroupList />
       </div>
       <div className="flex flex-col gap-2 overflow-scroll w-full max-w-xl">
-        <StoryContainer />
+        <StoryProvider>
+          <StoryAndReels />
+        </StoryProvider>
         <WritePost />
         <NewsFeed />
       </div>
-      <div className="gap-2 flex-col hidden sm:flex">
+      <div className="gap-2 flex-col hidden">
         <Ad />
         <FriendsList />
       </div>

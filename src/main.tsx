@@ -9,6 +9,8 @@ const client = new ApolloClient({
   uri: 'http://localhost:3001/graphql',
 });
 
+// https://social-backend-dev.fly.dev/graphql
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ApolloProvider client={client}>

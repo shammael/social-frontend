@@ -9,87 +9,29 @@
     "subscriptionType": null,
     "types": [
       {
-        "kind": "OBJECT",
-        "name": "BadRequestError",
+        "kind": "INPUT_OBJECT",
+        "name": "AddStoryInput",
         "description": null,
-        "fields": [
+        "fields": null,
+        "inputFields": [
           {
-            "name": "code",
+            "name": "mediaType",
             "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "message",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "messages",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "ErrorMessagesType",
-                  "ofType": null
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "name",
-            "description": null,
-            "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "ErrorName",
+                "name": "StoryMediaType",
                 "ofType": null
               }
             },
+            "defaultValue": null,
             "isDeprecated": false,
             "deprecationReason": null
           }
         ],
-        "inputFields": null,
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Error",
-            "ofType": null
-          }
-        ],
+        "interfaces": null,
         "enumValues": null,
         "possibleTypes": null
       },
@@ -124,112 +66,28 @@
         "possibleTypes": null
       },
       {
-        "kind": "INTERFACE",
-        "name": "Error",
-        "description": null,
-        "fields": [
-          {
-            "name": "code",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "message",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "messages",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "ErrorMessagesType",
-                  "ofType": null
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "name",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "ErrorName",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "BadRequestError",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ForbiddenError",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "InternalServerError",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "UnauthorizedError",
-            "ofType": null
-          }
-        ]
-      },
-      {
         "kind": "OBJECT",
-        "name": "ErrorMessagesType",
+        "name": "Friend",
         "description": null,
         "fields": [
           {
-            "name": "field",
+            "name": "_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "firstName",
             "description": null,
             "args": [],
             "type": {
@@ -245,7 +103,7 @@
             "deprecationReason": null
           },
           {
-            "name": "message",
+            "name": "lastName",
             "description": null,
             "args": [],
             "type": {
@@ -256,6 +114,34 @@
                 "name": "String",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "online",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "picturePath",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -268,32 +154,20 @@
       },
       {
         "kind": "ENUM",
-        "name": "ErrorName",
+        "name": "Gender",
         "description": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
-            "name": "BADREQUEST",
+            "name": "Female",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "FORBIDDEN",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "INTERNALSERVERERROR",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "UNAUTHORIZED",
+            "name": "Male",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -302,14 +176,26 @@
         "possibleTypes": null
       },
       {
-        "kind": "OBJECT",
-        "name": "ForbiddenError",
+        "kind": "INPUT_OBJECT",
+        "name": "GetFriendsStoriesInput",
         "description": null,
-        "fields": [
+        "fields": null,
+        "inputFields": [
           {
-            "name": "code",
+            "name": "limit",
             "description": null,
-            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "page",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -319,70 +205,12 @@
                 "ofType": null
               }
             },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "message",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "messages",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "ErrorMessagesType",
-                  "ofType": null
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "name",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "ErrorName",
-                "ofType": null
-              }
-            },
+            "defaultValue": null,
             "isDeprecated": false,
             "deprecationReason": null
           }
         ],
-        "inputFields": null,
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Error",
-            "ofType": null
-          }
-        ],
+        "interfaces": null,
         "enumValues": null,
         "possibleTypes": null
       },
@@ -442,91 +270,6 @@
         "fields": null,
         "inputFields": null,
         "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "InternalServerError",
-        "description": null,
-        "fields": [
-          {
-            "name": "code",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "message",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "messages",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "ErrorMessagesType",
-                  "ofType": null
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "name",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "ErrorName",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Error",
-            "ofType": null
-          }
-        ],
         "enumValues": null,
         "possibleTypes": null
       },
@@ -604,7 +347,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "LoginData",
+        "name": "LoginResponse",
         "description": null,
         "fields": [
           {
@@ -646,34 +389,8 @@
         "possibleTypes": null
       },
       {
-        "kind": "UNION",
-        "name": "LoginResponse",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "BadRequestError",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "InternalServerError",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "LoginData",
-            "ofType": null
-          }
-        ]
-      },
-      {
         "kind": "OBJECT",
-        "name": "Logout",
+        "name": "LogoutResponse",
         "description": null,
         "fields": [
           {
@@ -695,36 +412,43 @@
         "possibleTypes": null
       },
       {
-        "kind": "UNION",
-        "name": "LogoutResponse",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "ForbiddenError",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "InternalServerError",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "Logout",
-            "ofType": null
-          }
-        ]
-      },
-      {
         "kind": "OBJECT",
         "name": "Mutation",
         "description": null,
         "fields": [
+          {
+            "name": "addStory",
+            "description": null,
+            "args": [
+              {
+                "name": "input",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "AddStoryInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "deletePost",
             "description": null,
@@ -750,8 +474,41 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "UNION",
-                "name": "PostRespose",
+                "kind": "OBJECT",
+                "name": "Post",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "deleteStory",
+            "description": null,
+            "args": [
+              {
+                "name": "storyID",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Story",
                 "ofType": null
               }
             },
@@ -783,7 +540,7 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "UNION",
+                "kind": "OBJECT",
                 "name": "LoginResponse",
                 "ofType": null
               }
@@ -816,8 +573,74 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "UNION",
+                "kind": "OBJECT",
                 "name": "LogoutResponse",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "register",
+            "description": null,
+            "args": [
+              {
+                "name": "input",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "RegisterInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "storySeen",
+            "description": null,
+            "args": [
+              {
+                "name": "storyID",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -849,8 +672,8 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "UNION",
-                "name": "ToogleLikeResponse",
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -1024,6 +847,11 @@
           {
             "kind": "OBJECT",
             "name": "PostList",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "StoriesFriend",
             "ofType": null
           }
         ]
@@ -1402,32 +1230,6 @@
         "possibleTypes": null
       },
       {
-        "kind": "UNION",
-        "name": "PostRespose",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "BadRequestError",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "InternalServerError",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "Post",
-            "ofType": null
-          }
-        ]
-      },
-      {
         "kind": "ENUM",
         "name": "PostStatus",
         "description": null,
@@ -1457,31 +1259,43 @@
         "possibleTypes": null
       },
       {
-        "kind": "UNION",
-        "name": "PostsRespose",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "InternalServerError",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "PostList",
-            "ofType": null
-          }
-        ]
-      },
-      {
         "kind": "OBJECT",
         "name": "Query",
         "description": null,
         "fields": [
+          {
+            "name": "getFriendsStories",
+            "description": null,
+            "args": [
+              {
+                "name": "input",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "GetFriendsStoriesInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "StoriesFriend",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "post",
             "description": null,
@@ -1507,8 +1321,8 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "UNION",
-                "name": "PostRespose",
+                "kind": "OBJECT",
+                "name": "Post",
                 "ofType": null
               }
             },
@@ -1540,8 +1354,8 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "UNION",
-                "name": "PostsRespose",
+                "kind": "OBJECT",
+                "name": "PostList",
                 "ofType": null
               }
             },
@@ -1555,22 +1369,399 @@
         "possibleTypes": null
       },
       {
-        "kind": "SCALAR",
-        "name": "String",
-        "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
+        "kind": "INPUT_OBJECT",
+        "name": "RegisterInput",
+        "description": null,
         "fields": null,
-        "inputFields": null,
+        "inputFields": [
+          {
+            "name": "birthDate",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Date",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "email",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "firstName",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "gender",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "Gender",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "lastName",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "password",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "interfaces": null,
         "enumValues": null,
         "possibleTypes": null
       },
       {
         "kind": "OBJECT",
-        "name": "ToggleLike",
+        "name": "StoriesFriend",
         "description": null,
         "fields": [
           {
-            "name": "message",
+            "name": "docs",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "UserStories",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "hasNextPage",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "hasPrevPage",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "limit",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "nextPage",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "offset",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "page",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pagingCounter",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "prevPage",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "totalDocs",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "totalPages",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Paginate",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Story",
+        "description": null,
+        "fields": [
+          {
+            "name": "_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "content",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "StoryContent",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "interactions",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "StoryInteractions",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "status",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "StoryStatus",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "StoryContent",
+        "description": null,
+        "fields": [
+          {
+            "name": "media",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "StoryMediaType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "mediaUrl",
             "description": null,
             "args": [],
             "type": {
@@ -1584,6 +1775,146 @@
         ],
         "inputFields": null,
         "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "StoryInteractions",
+        "description": null,
+        "fields": [
+          {
+            "name": "reactions",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "StoryInteractionsReactions",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "userID",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "StoryInteractionsReactions",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "haha",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "like",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "love",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "StoryMediaType",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "picture",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "text",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "video",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "StoryStatus",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "active",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "archived",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "disabled",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "String",
+        "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
         "enumValues": null,
         "possibleTypes": null
       },
@@ -1637,117 +1968,6 @@
         "possibleTypes": null
       },
       {
-        "kind": "UNION",
-        "name": "ToogleLikeResponse",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "BadRequestError",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "InternalServerError",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ToggleLike",
-            "ofType": null
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "UnauthorizedError",
-        "description": null,
-        "fields": [
-          {
-            "name": "code",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "message",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "messages",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "ErrorMessagesType",
-                  "ofType": null
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "name",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "ErrorName",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Error",
-            "ofType": null
-          }
-        ],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
         "kind": "OBJECT",
         "name": "User",
         "description": null,
@@ -1762,6 +1982,22 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "birthDate",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Date",
                 "ofType": null
               }
             },
@@ -1801,6 +2037,42 @@
             "deprecationReason": null
           },
           {
+            "name": "friendsList",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Friend",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "gender",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "Gender",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "lastName",
             "description": null,
             "args": [],
@@ -1818,18 +2090,6 @@
           },
           {
             "name": "location",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "occupation",
             "description": null,
             "args": [],
             "type": {
@@ -1864,6 +2124,53 @@
               "kind": "SCALAR",
               "name": "String",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "UserStories",
+        "description": null,
+        "fields": [
+          {
+            "name": "stories",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Story",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "userID",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -2795,7 +3102,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "String",
+                "name": "Email",
                 "ofType": null
               }
             },

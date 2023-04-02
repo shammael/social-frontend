@@ -2,7 +2,7 @@ import { createContext } from 'react';
 
 export interface IError {
   message: string;
-  messages: { message: string; field: string }[];
+  field: string;
 }
 
 interface Props {

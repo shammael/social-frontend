@@ -8,41 +8,35 @@ import { useDispatch } from 'react-redux';
 import { useContext, useEffect, useState } from 'react';
 import LoginContext from '../context/login.context';
 
-const LoginForm = () => {
+interface Props {
+  onRegister: () => void;
+}
+
+const LoginForm = ({ onRegister }: Props) => {
   const {
     handleBlur,
     handleSubmit,
-    loginErrors,
+    formErrors,
     touched,
     handleChange,
     isSubmitting,
     loading,
     values,
     data,
+    loginError,
   } = useLogin();
+
   const dispatch = useDispatch();
-  const { setError } = useContext(LoginContext);
+  const { error } = useContext(LoginContext);
 
-  useEffect(() => {
-    if (data?.login.__typename === 'BadRequestError') {
-      setError({
-        message: data.login.message,
-        messages: data.login.messages as {
-          message: string;
-          field: string;
-        }[],
-      });
-    }
-  }, [data, setError]);
+  if (loginError?.graphQLErrors.length! > 0) {
+    return <Navigate to="/login/check" replace={true} />;
+  }
 
-  if (data?.login.__typename === 'LoginData') {
+  if (data?.login) {
     dispatch(setUser(data.login?.user!));
     dispatch(setToken(data.login?.token!));
     return <Navigate to="/" replace={true} />;
-  }
-
-  if (data?.login.__typename === 'BadRequestError') {
-    return <Navigate to="/login/check" replace={true} />;
   }
 
   return (
@@ -55,7 +49,7 @@ const LoginForm = () => {
     >
       <Input
         className={
-          loginErrors!.email && touched.email ? 'border-1 border-red-300 ' : ''
+          formErrors!.email && touched.email ? 'border-1 border-red-300 ' : ''
         }
         type="email"
         value={values.email}
@@ -63,12 +57,12 @@ const LoginForm = () => {
         id="email"
         onBlur={handleBlur}
         onChange={handleChange}
-        error={loginErrors!.email && touched.email ? loginErrors!.email : null}
+        error={formErrors!.email && touched.email ? formErrors!.email : null}
       />
 
       <Input
         className={
-          loginErrors!.password && touched.password
+          formErrors!.password && touched.password
             ? 'border-1 border-red-300 '
             : ''
         }
@@ -79,9 +73,7 @@ const LoginForm = () => {
         placeholder="Password"
         onBlur={handleBlur}
         error={
-          loginErrors!.password && touched.password
-            ? loginErrors!.password
-            : null
+          formErrors!.password && touched.password ? formErrors!.password : null
         }
       />
 
@@ -99,6 +91,10 @@ const LoginForm = () => {
       </Link>
       <Divider />
       <button
+        onClick={() => {
+          onRegister();
+        }}
+        type="button"
         disabled={isSubmitting && loading}
         className="bg-green-500 disabled:bg-gray-300 py-2 rounded-md text-white text-lg font-medium max-w-sm m-auto p-5"
       >

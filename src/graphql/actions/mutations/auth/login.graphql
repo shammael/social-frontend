@@ -1,33 +1,20 @@
 mutation Login($input: loginInput!) {
   login(input: $input) {
-    ... on LoginData {
-      user {
-        email
-        online
+    user {
+      email
+      online
+      _id
+      firstName
+      lastName
+      picturePath
+      friendsList {
         _id
         firstName
         lastName
+        online
         picturePath
       }
-      token
     }
-    ... on BadRequestError {
-      message
-      name
-      code
-      messages {
-        field
-        message
-      }
-    }
-    ... on InternalServerError {
-      message
-      name
-      code
-      messages {
-        field
-        message
-      }
-    }
+    token
   }
 }

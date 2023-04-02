@@ -11,43 +11,22 @@ const CheckLoginForm = () => {
   const { error, setError } = useContext(LoginContext);
   const dispatch = useDispatch();
 
-  console.log({ outside: error });
-
   const {
     handleBlur,
     handleChange,
     handleSubmit,
     isSubmitting,
     loading,
-    loginErrors,
     touched,
     values,
-    setErrors,
     data,
+    formErrors,
   } = useLogin();
 
-  useEffect(() => {
-    if (Object.entries(loginErrors).length === 0 && error?.message) {
-      error.messages.map((err) => {
-        setErrors({ [err.field]: err.message });
-      });
-      return;
-    }
-
-    if (Object.entries(loginErrors).length !== 0 && error?.message) {
-      setError(null);
-      return;
-    }
-  }, [loginErrors, error]);
-
-  if (data?.login.__typename === 'LoginData') {
+  if (data?.login) {
     dispatch(setUser(data.login?.user!));
     dispatch(setToken(data.login?.token!));
     return <Navigate to="/" replace={true} />;
-  }
-
-  if (data?.login.__typename === 'BadRequestError') {
-    return <Navigate to="/login/check" replace={true} />;
   }
 
   return (
@@ -59,19 +38,19 @@ const CheckLoginForm = () => {
         Login to Social
       </h2>
       <Input
-        className={loginErrors!.email ? 'border-1 border-red-300 ' : ''}
+        className={formErrors!.email ? 'border-1 border-red-300 ' : ''}
         type="email"
         value={values.email}
         placeholder="Email"
         id="email"
         onBlur={handleBlur}
         onChange={handleChange}
-        error={loginErrors!.email ? loginErrors!.email : null}
+        error={formErrors!.email ? formErrors!.email : null}
       />
 
       <Input
         className={
-          loginErrors!.password && touched.password
+          formErrors!.password && touched.password
             ? 'border-1 border-red-300 '
             : ''
         }
@@ -82,9 +61,7 @@ const CheckLoginForm = () => {
         placeholder="Password"
         onBlur={handleBlur}
         error={
-          loginErrors!.password && touched.password
-            ? loginErrors!.password
-            : null
+          formErrors!.password && touched.password ? formErrors!.password : null
         }
       />
 
